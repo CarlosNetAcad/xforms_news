@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="NewsForms.CustomControls.MovieEmptySearchView">
+   <StackLayout Spacing="16" VerticalOptions="CenterAndExpand">
+        <Image>
+            <Image.Source>
+                <FontImageSource
+                    FontFamily="open-iconic"
+                    Glyph="&#xe0b3;"
+                    Size="68"
+                    Color="Gray" />
+            </Image.Source>
+        </Image>
+        <Label
+            FontSize="22"
+            HorizontalTextAlignment="Center"
+            Text="No results, please search again."
+            TextColor="Gray" />
+    </StackLayout>
+</ContentView>
+

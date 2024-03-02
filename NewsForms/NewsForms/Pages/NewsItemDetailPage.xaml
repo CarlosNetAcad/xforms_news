@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="NewsForms.Pages.NewsItemDetailPage">
+    <ContentPage.Resources>
+    <ResourceDictionary>
+        <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+            <Setter Property="BackgroundColor" Value="#FFDEFF" />
+        </Style>
+    </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <Image Source="https://img.freepik.com/premium-photo/natural-marble-pattern-background_1258-22160.jpg" Aspect="AspectFill"/>
+	     <Image 
+                           Source="{Binding urlToImageD}"
+                           Margin="0,0,0,-5"
+                           HeightRequest="200"
+                           WidthRequest="200"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Center"/>
+        <StackLayout HorizontalOptions="Center" Padding="0,50,0,00">
+         <Label Text="{Binding TitleD}" HorizontalTextAlignment="Center" TextColor="#585858" FontSize="30"/>
+         <Label Text="{Binding PublishedAtD}" HorizontalTextAlignment="Center" Margin="0,-5" TextColor="Red"/>
+        </StackLayout>
+        <Label Text="{Binding DescriptionD}" TextColor="Blue"  Margin="20,0" HorizontalTextAlignment="Center" />
+         <ScrollView>
+            <Label Text="{Binding ContentD}" TextColor="Blue"  Margin="20,0" HorizontalTextAlignment="Center" />
+             </ScrollView>
+    </StackLayout>
+</ContentPage>
+

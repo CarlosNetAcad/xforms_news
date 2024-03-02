@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behavior="clr-namespace:NewsForms.Behaviors"
+    x:Class="NewsForms.Pages.NewsPage"
+    x:Name="this"
+    Title="{Binding Title}">
+    <ContentPage.Resources>
+    <ResourceDictionary>
+        <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+            <Setter Property="BackgroundColor" Value="#FFDEFF" />
+        </Style>
+    </ResourceDictionary>
+</ContentPage.Resources>
+    <StackLayout Spacing="16"> 
+        <Grid RowDefinitions="*,Auto">
+            <Image
+                Source="https://img.freepik.com/vector-premium/fondo-morado-lujo-estilo-linea-dorada_322958-905.jpg"
+                VerticalOptions="Center"
+                Aspect="AspectFill"/>
+            <Label
+                TextColor="White"
+                FontSize="40"
+                Grid.Row="0"
+                Text="News App"
+                VerticalOptions="CenterAndExpand"
+                Padding="20,30,0,0"/>
+           
+        </Grid>
+        <Label Text="Search Query" />
+        <Entry Text="{Binding SearchQuery}" />
+
+        <Label Text="From Date" />
+        <DatePicker Date="{Binding FromDate}" />
+
+        <Label Text="Sort By" />
+        <Picker ItemsSource="{Binding SortByOptions}"
+                SelectedItem="{Binding SelectedSortBy}" />
+
+        <Button Text="Search" Command="{Binding SearchCommand}" BackgroundColor="#5992FF"
+                HeightRequest="40"
+                TextColor="White"
+                CornerRadius="20"
+                />
+        <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+        <CollectionView
+        SelectedItems="{Binding SelectedNewsItem}"
+        SelectionChangedCommand="{Binding SelectionChangedCommand}"
+        ItemsSource="{Binding NewsList}">
+        <CollectionView.ItemsLayout>
+        <GridItemsLayout Orientation="Vertical" Span="1" />
+        </CollectionView.ItemsLayout>
+        <CollectionView.Behaviors>
+            <behavior:SelectionChangedBehavior SelectionChangedCommand="{Binding Source={x:Reference this}, Path=BindingContext.NoteTappedCommand}" />
+        </CollectionView.Behaviors>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <ContentView>
+                        <SwipeView>
+                         <StackLayout Padding="10,5,10,5" BackgroundColor="#eeeeee">
+                                 <Grid RowDefinitions="Auto,Auto">
+            <Grid ColumnDefinitions="Auto,*" RowDefinitions="*,Auto,Auto,Auto,Auto" RowSpacing="0">
+             <Image Grid.Row="0" Grid.Column="0" 
+                           Source="{Binding UrlToImage}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"   
+                           HeightRequest="50"
+                           WidthRequest="50"
+                           Margin="10,0,20,0"/>
+             <Label Grid.Row="0" Grid.Column="1" 
+                           Text="{Binding Title}"
+                           FontAttributes="Bold"
+                           FontSize="20"
+                           Padding="10,0,0,0"
+                           VerticalOptions="CenterAndExpand"/>
+            </Grid>
+                               </Grid>
+                            </StackLayout>
+                            <SwipeView.LeftItems>
+                            <SwipeItemView
+                                Command="{Binding Source={x:Reference this}, Path=BindingContext.NoteTappedCommand}"
+                                CommandParameter="{Binding .}"
+                               >
+                            
+                               <Image HeightRequest="80" Source="https://www.vmsc.com.ar/wp-content/uploads/2020/08/unnamed.jpg" />
+                                </SwipeItemView>
+                                </SwipeView.LeftItems>
+                        </SwipeView>
+                        </ContentView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            <CollectionView.EmptyView>
+
+            <StackLayout>
+                <Image VerticalOptions="CenterAndExpand" Aspect="AspectFit" Source="https://i.pinimg.com/originals/c9/22/68/c92268d92cf2dbf96e3195683d9e14fb.png" />
+              
+            </StackLayout>
+
+        </CollectionView.EmptyView>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>
+
